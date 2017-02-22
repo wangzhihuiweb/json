@@ -2,11 +2,39 @@
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<script type="text/javascript" src='js/jquery-1.8.3.min.js'></script>
 		<title></title>
 	</head>
 	<body>
 		<script type="text/javascript">
-			
+		
+		$.ajax({
+	        type: "GET",
+	        url: "https://wangzhihuiweb.github.io/json/Previous.json",
+	        data: null,
+	        dataType: "html",
+	        async: true,
+	        beforeSend:function(xhr){
+//		        console.log(xhr)
+		        console.log('发送前')
+		    },
+		    success:function(data){
+//		        console.log(data)
+				var obj = eval('(' + data + ')');
+				$.each(obj, function(index,key) {
+					$("body").append(key.Id)
+				});
+				
+		    },
+		    error:function(xhr,textStatus){
+		        console.log('错误')
+//		        console.log(xhr)
+//		        console.log(textStatus)
+		    },
+		    complete:function(){
+		        console.log('结束')
+		    }
+    });
 		</script>
 	</body>
 	</html>	
